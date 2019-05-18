@@ -3,7 +3,7 @@ from mechanize import Browser
 import time
 import random
 import http.cookiejar
-import sys
+import os, sys
 
 
 G = '\033[32;1m'
@@ -53,7 +53,9 @@ print(R + FBI + W)
 
 
 X = raw_input("""
-[+] ID/ATTACK : """)
+[+] FILE NAME : """)
+
+P = str(X)
 
 
 C = raw_input(G + """
@@ -64,7 +66,7 @@ WT = """
 print(R + WT )
 
 #BASICS
-FBURL = ('https://m.facebook.com/messages/t/' + X )
+
 br = mechanize.Browser() 
 cj = mechanize.CookieJar()
 br.set_handle_robots(False)
@@ -102,16 +104,33 @@ time.sleep(1.5)
 #else :
 # print(G + "SUCSSESFUL LOGIN ! >>> wait for comment ...")	
 
-STRT = """ [!] PROGRAM START . """
-print(G + STRT + W)
-br.open(FBURL)
 
+ 
+
+STRT = """ [!] PROGRAM START . """
+
+
+print(G + STRT + W)  
+
+
+ 
 
 def main() : 
     i= int(0)
-    N = input("number of msg : ")
-    VAL = int(N)
-    while(i<VAL) :
+    while(i<1000000000) :
+        FBURL = ('https://m.facebook.com/messages/t/') 
+        readFile = open(P)
+        lines = readFile.readlines()
+        readFile.close()
+        lino=lines[1:]
+        Ww = open(P, "w")
+        Ww.writelines(lino)
+        Ww.close()
+        Ff=open(P, "r")
+        ends = (Ff.readline(100))
+
+
+        br.open(FBURL + ends) 
 
         br.select_form(nr=0)
         br.form['body'] = C
@@ -119,8 +138,10 @@ def main() :
         time.sleep(0.2)
         i+=1
         print( R +"{}".format(i) + " MSG SENT")
+        
     print( G + " [!] PROGRAM END .")
 
 
 if __name__ == '__main__':main() 
+    
     
