@@ -2,6 +2,7 @@
 # MADE BY BAHGAT
 
 apt-get update
+
 apt-get upgrade
 
 Require python2
